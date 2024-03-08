@@ -2,8 +2,9 @@ import express from 'express'
 import 'dotenv/config'
 import prisma from './db/db.js'
 import userRouter from './Controllers/user.js'
-
+import cors from 'cors'
 const app = express()
+app.use(cors())
 app.get('/' , async (req , res) => {
     res.json({
         message:"Hello And Welcome"

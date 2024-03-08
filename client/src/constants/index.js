@@ -1,0 +1,1 @@
+export const BASE_URL = "https://project-0jz4.onrender.com"
