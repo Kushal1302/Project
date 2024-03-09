@@ -36,6 +36,7 @@ const loginUser = async (req ,res) => {
             return res.json({
                 token:token,
                 message:"Login Successfull",
+                userName:user.name
             })
         }
         return res.json({
