@@ -21,7 +21,7 @@ const Login = () => {
     } , {
         onSuccess:(data) => {
             if(data?.data.token){
-                localStorage.setItem("token" , data?.data.token)
+                localStorage.setItem("user" , JSON.stringify({userName:data?.data.userName,token:data?.data.token}))
                 alert(data?.data.message)
                 navigate('/dashboard')
             }else{
@@ -38,7 +38,7 @@ const Login = () => {
     }
   return (
     <Box sx={{display:'flex' , justifyContent:'center', alignItems:'center' , minHeight:'100vh'}}>
-        <Grid container lg={3} md={4} sm={8} xs={10} sx={{display:'flex' , justifyContent:'center',border:1  , minHeight:"400px" , alignItems:'center'}}>
+        <Grid container lg={3} md={4} sm={8} xs={10} sx={{display:'flex' , justifyContent:'center',borderRadius:5 , minHeight:"400px" , alignItems:'center',background:'#E0E3E8',boxShadow:"rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px"}}>
             <Grid item container sx={{display:'flex',justifyContent:'center'}}>
                 <Grid item lg={10} md={10} sm={10} xs={10} sx={{display:'flex' , justifyContent:'center' , alignItems:'center'}}>
                     <Typography variant='h4'>
