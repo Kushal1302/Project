@@ -1,4 +1,5 @@
 import prisma from './db.js'
+import  Jwt  from 'jsonwebtoken'
 const findUser = async (req ,res) => {
     try {
         const user = await prisma.user.findUnique({
@@ -22,6 +23,30 @@ const findUser = async (req ,res) => {
         console.log(error)
     }
 }
+const loginUser = async (req ,res) => {
+    try {
+        const {email , password} = req.body
+        const user = await prisma.user.findUnique({
+            where:{
+                email:email,
+                password:password
+            }
+        })
+        if(user){
+            const token = Jwt.sign(user , "secretKey")
+            return res.json({
+                token:token,
+                message:"Login Successfull",
+            })
+        }
+        return res.json({
+            message:"Login Failed"
+        })
+    } catch (error) {
+        console.log(error.message)
+    }
+}
 export {
-    findUser
+    findUser,
+    loginUser
 }
