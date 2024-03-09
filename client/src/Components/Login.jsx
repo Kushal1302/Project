@@ -23,6 +23,7 @@ const Login = () => {
         },
         onError:(err) => {
             alert(err?.data.message)
+            console.log(err)
         }
     })
     const handleSubmit = () => {

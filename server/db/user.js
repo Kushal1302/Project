@@ -28,11 +28,10 @@ const loginUser = async (req ,res) => {
         const {email , password} = req.body
         const user = await prisma.user.findUnique({
             where:{
-                email:email,
-                password:password
+                email:email
             }
         })
-        if(user){
+        if(user && (user.password === password)){
             const token = Jwt.sign(user , "secretKey")
             return res.json({
                 token:token,
