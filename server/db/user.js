@@ -39,7 +39,8 @@ const loginUser = async (req ,res) => {
             })
         }
         return res.json({
-            message:"Login Failed"
+            message:"Login Failed",
+            data:user
         })
     } catch (error) {
         console.log(error.message)

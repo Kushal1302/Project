@@ -3,7 +3,9 @@ import {Box, Button, Grid, TextField, Typography} from '@mui/material'
 import { useMutation } from 'react-query'
 import axios from 'axios'
 import { BASE_URL } from '../constants'
+import { useNavigate } from 'react-router'
 const Login = () => {
+    const navigate = useNavigate()
     const [loginData , setLoginData] = useState({
         email:"",
         password:""
@@ -18,8 +20,13 @@ const Login = () => {
         return axios.post(`${BASE_URL}/find/login`,loginData)
     } , {
         onSuccess:(data) => {
-            localStorage.setItem("token" , data?.data.token)
-            alert(data?.data.message)
+            if(data?.data.token){
+                localStorage.setItem("token" , data?.data.token)
+                alert(data?.data.message)
+                navigate('/dashboard')
+            }else{
+                alert(data?.data.message)
+            }
         },
         onError:(err) => {
             alert(err?.data.message)
